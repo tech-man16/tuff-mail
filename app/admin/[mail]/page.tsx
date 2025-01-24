@@ -10,7 +10,11 @@ import { counterContext } from "@/app/context/context";
 import { getMail } from "@/app/server-actions/functions";
 import Loading from "@/app/components/loading";
 
-const Dashboard = ({ params }: any) => {
+export function generateStaticParams() { // Only for deployment it is used..Rather than no use of this
+    return [{ mail: '0' }];
+}
+
+const Dashboard = ({ params }: {params: {mail:string} }) => {
 
     const [keyVal, updatekeyVal]: any = useState({
         senderId: "kiatech152@tuff.com",
