@@ -1,11 +1,9 @@
 'use client';
 import React, { useState } from "react";
-import { Button, Input } from "@nextui-org/react";
+import { Button, Input, CircularProgress } from "@nextui-org/react";
 import { login, signup } from "../server-actions/functions";
 import { useRouter } from "next/navigation";
 import background from "@/app/logo/bg2.jpg";
-import Loading from "../components/loading";
-import { div } from "framer-motion/client";
 
 const LoginPage = ({ update }: any) => {
     const router = useRouter();
@@ -38,10 +36,9 @@ const LoginPage = ({ update }: any) => {
                     <label htmlFor="pwd"> Password </label>
                     <Input id="pwd" type="Password" className="tracking-wide" onChange={handle} />
                 </div>
-                <span className="flex justify-end mx-2 submit"> <Button isDisabled={isLoading} color="success" type="submit"> {!isLoading ? "Submit" : <Loading />} </Button> </span>
+                <span className="flex justify-end mx-2 submit"> <Button isDisabled={isLoading} color="success" type="submit"> {!isLoading ? "Submit" : <CircularProgress aria-label="Loading..." />} </Button> </span>
                 <Button color="primary" variant="light" onPress={() => update(0)} className="text-base" >  Signup ?  </Button>
             </form>
-
         </div>
     )
 }
@@ -97,7 +94,7 @@ const SignUpPage = ({ update }: any) => {
                     <label htmlFor="cpwd"> Confirm Password </label>
                     <Input id="cpwd" type="Password" className="tracking-wide" onChange={handle} required />
                 </div>
-                <span className="flex justify-end mx-2 submit"> <Button color="success" type="submit"> {!isLoading ? 'Signup' : <Loading />} </Button> </span>
+                <span className="flex justify-end mx-2 submit"> <Button color="success" type="submit"> {!isLoading ? 'Signup' : <CircularProgress aria-label="Loading..." />} </Button> </span>
                 <Button color="primary" variant="light" onPress={() => update(1)} className="text-base">  Login ? </Button>
             </form>
 

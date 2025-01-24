@@ -36,7 +36,7 @@ export async function POST(req: NextRequest, res: any) {
 
         await disconnect();
 
-        return NextResponse.json({ msg: "Get mail Successfull !!", status: 200, data: data, fname: fname + " " + mname + " " + lname }, { status: 200 });
+        return NextResponse.json({ msg: "Get mail Successfull !!", status: 200, data: data, fname: fname + " " + mname + " " + lname, uname:uname }, { status: 200 });
     } catch (e: any) {
         console.log(e)
         return NextResponse.json({ msg: "Internal server error", status: 505, error: e }, { status: 505 });

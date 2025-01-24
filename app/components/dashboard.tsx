@@ -10,10 +10,10 @@ import { counterContext } from "@/app/context/context";
 import { getMail } from "@/app/server-actions/functions";
 import Loading from "@/app/components/loading";
 
-const Dashboard = ( {params} : any) => {
+const Dashboard = ({ params }: any) => {
 
     const [keyVal, updatekeyVal]: any = useState({
-        senderId: "kiatech152@tuff.com",
+        senderId: null,
         s: "a-inbox",
         draftinfo: { draft: false },
         st: [],
@@ -30,13 +30,13 @@ const Dashboard = ( {params} : any) => {
             (async () => {
                 const data = await getMail(param);
                 const actual_data = data.data;
-                console.log(data);
                 updatekeyVal((prevVal: any) => (
                     {
                         ...prevVal,
                         mails: actual_data,
                         loading: false,
-                        fname: data.fname
+                        fname: data.fname,
+                        senderId: data.uname
                     }));
             })();
         }
