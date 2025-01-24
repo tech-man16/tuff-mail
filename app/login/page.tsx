@@ -4,6 +4,8 @@ import { Button, Input } from "@nextui-org/react";
 import { login, signup } from "../server-actions/functions";
 import { useRouter } from "next/navigation";
 import background from "@/app/logo/bg2.jpg";
+import Loading from "../components/loading";
+import { div } from "framer-motion/client";
 
 const LoginPage = ({ update }: any) => {
     const router = useRouter();
@@ -11,11 +13,14 @@ const LoginPage = ({ update }: any) => {
     const handle = (e: any) => {
         setInfo((prevval) => ({ ...prevval, [e.target.id]: e.target.value }))
     };
+    const [isLoading, setLoading] = useState(false);
     const submit = async (e: any) => {
         e.preventDefault();
+        setLoading(true);
         const res = await login(info);
         if (res.status == 200)
             router.push(`/admin/${res.slug}`);
+        setLoading(false);
     };
     return (
         <div className="flex justify-center items-center bg-cover bg-no-repeat h-screen form" style={{ backgroundImage: `url(${background.src})` }}>
@@ -33,7 +38,7 @@ const LoginPage = ({ update }: any) => {
                     <label htmlFor="pwd"> Password </label>
                     <Input id="pwd" type="Password" className="tracking-wide" onChange={handle} />
                 </div>
-                <span className="flex justify-end mx-2 submit"> <Button color="success" type="submit"> Submit </Button> </span>
+                <span className="flex justify-end mx-2 submit"> <Button isDisabled={isLoading} color="success" type="submit"> {!isLoading ? "Submit" : <Loading />} </Button> </span>
                 <Button color="primary" variant="light" onPress={() => update(0)} className="text-base" >  Signup ?  </Button>
             </form>
 
@@ -43,14 +48,17 @@ const LoginPage = ({ update }: any) => {
 
 const SignUpPage = ({ update }: any) => {
     const [info, updateInfo] = useState({});
-
+    const [isLoading, setLoading] = useState(false);
     const handle = (e: any) => {
         updateInfo((prevVal) => ({ ...prevVal, [e.target.id]: e.target.value }));
     }
     const submit = async (e: any) => {
+        setLoading(true);
         e.preventDefault();
         const res = await signup(info);
-        console.log(res);
+        if (res.status == 200)
+            alert("Signup Successfull !!");
+        setLoading(false);
     }
     return (
         <div className="flex justify-center items-center md:bg-cover md:bg-no-repeat h-screen form" style={{ backgroundImage: `url(${background.src})` }}>
@@ -89,7 +97,7 @@ const SignUpPage = ({ update }: any) => {
                     <label htmlFor="cpwd"> Confirm Password </label>
                     <Input id="cpwd" type="Password" className="tracking-wide" onChange={handle} required />
                 </div>
-                <span className="flex justify-end mx-2 submit"> <Button color="success" type="submit"> Signup </Button> </span>
+                <span className="flex justify-end mx-2 submit"> <Button color="success" type="submit"> {!isLoading ? 'Signup' : <Loading />} </Button> </span>
                 <Button color="primary" variant="light" onPress={() => update(1)} className="text-base">  Login ? </Button>
             </form>
 
