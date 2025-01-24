@@ -10,7 +10,7 @@ import { counterContext } from "@/app/context/context";
 import { getMail } from "@/app/server-actions/functions";
 import Loading from "@/app/components/loading";
 
-const Dashboard = ({ params }: any) => {
+const Dashboard = ( {params} : any) => {
 
     const [keyVal, updatekeyVal]: any = useState({
         senderId: "kiatech152@tuff.com",

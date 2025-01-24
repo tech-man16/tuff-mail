@@ -5,8 +5,6 @@ export async function generateStaticParams() {
 import Dashboard from "@/app/components/dashboard";
 
 const DashBoard = ({ params }: { params: { mail: string } }) => {
-    const { mail } = params;
-
-    return <Dashboard mail={mail} />
+    return <Dashboard params={params} />
 }
 export default DashBoard;
