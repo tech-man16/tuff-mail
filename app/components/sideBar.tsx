@@ -7,7 +7,6 @@ import { checkState } from "./inbox";
 import Loading from "./loading";
 import { useRouter } from "next/navigation";
 import { markMail } from "../server-actions/functions";
-import { div } from "framer-motion/client";
 
 export const BugIcon = (props: any) => {
     return (

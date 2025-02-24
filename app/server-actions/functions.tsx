@@ -1,7 +1,7 @@
 import path from "path";
 import { cache } from "react";
 
-const signup = async (params: any) => {
+const signup = async (params: any) => { // login/page.tsx
     const res = await fetch(path.join(process.cwd(), "/signup"), {
         method: "POST",
         body: JSON.stringify(params)
@@ -11,7 +11,7 @@ const signup = async (params: any) => {
     return data;
 }
 
-const login = async (params: any) => {
+const login = async (params: any) => { // login/page.tsx
     const res = await fetch(path.join(process.cwd(), "/validate"), {
         method: "POST",
         body: JSON.stringify(params)
@@ -21,7 +21,7 @@ const login = async (params: any) => {
     return data;
 }
 
-const sendMail = async (params: any) => {
+const sendMail = async (params: any) => { // components/sendmail.tsx, components/sideBar.tsx
 
     const res = await fetch(path.join(process.cwd(), "/sendMail"), {
         method: "POST",
@@ -31,7 +31,7 @@ const sendMail = async (params: any) => {
     return data;
 }
 
-const getMail = cache(async (params: any) => {
+const getMail = cache(async (params: any) => { // admin/page.tsx , components/dashboard.tsx
     const res = await fetch(path.join(process.cwd(), "/inbox"), {
         method: "POST",
         body: JSON.stringify(params)
@@ -40,7 +40,7 @@ const getMail = cache(async (params: any) => {
     return data;
 })
 
-const markMail = async (params: any) => {
+const markMail = async (params: any) => { // components/sidebar.tsx
     const res = await fetch(path.join(process.cwd(), "/markMail"), {
         method: "POST",
         body: JSON.stringify(params)
@@ -49,7 +49,7 @@ const markMail = async (params: any) => {
     return data;
 }
 
-const getmsgInfo = async (params: any) => {
+const getmsgInfo = async (params: any) => { // components/recieved.tsx, components/sendMail.tsx
     const res = await fetch(path.join(process.cwd(), "/getmsgInfo"), {
         method: "POST",
         body: JSON.stringify(params)
